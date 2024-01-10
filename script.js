@@ -8,45 +8,54 @@ bodie.appendChild(para);
 const l=[]
 function plays(playerSelection,computerSelection){
     if (playerSelection ==="rock" && computerSelection === "scissors"){
-        x="you win!";
+        y="rock beats scissors,you win!";
+        x=1;
     }
     else if(playerSelection ==="scissors" && computerSelection === "paper"){
-        x="you win!";
+        y="scissors beats paper,you win!";
+        x=1;
     }
     else if(playerSelection === 'paper' && computerSelection === 'rock') {
-        x="you win!";
+        y ="paper beats rock,you win!";
+        x=1;
     }
     
     else if(playerSelection === 'scissors' && computerSelection === 'rock') {
-        x='you lose!';
+        y="rock beats scissors,you lose!";
+        x=0;
     }
     
     else if(playerSelection === 'paper' && computerSelection === 'scissors') {
-        x='you lose!';
+        y ="scissors beats paper,you lose!";
+        x=0;
     }
     
     else if (playerSelection === 'rock' && computerSelection === 'paper') {
-        x='you lose!';
+        y ="paper beats rock,you lose!";
+        x=0;
     }
     else{
-        x="tie"
+        y ="tie";
     }
     
     l.push(x)
     console.log(l)
-    if (l.length==5){
-        let win=0
-        let lose=0
-        for(let i=0;i<l.length;i++){
-            if (l[i]=="you win!"){
-                win=win+1
-            }
-            else{
-                lose=lose+1
-            }
+    let player=0
+    let computer=0
+    for(let i=0;i<l.length;i++){
+        if (l[i]==1){
+            player=player+1
         }
-        if (win>lose){
-            
+        else{
+            computer=computer+1
+        }
+    }
+    
+    pp.textContent=`player:${player} computer:${computer}`
+    
+    if (l.length>=5){
+        if (player>computer){
+        
             alert("You win the game");
         }
         else{
@@ -54,6 +63,7 @@ function plays(playerSelection,computerSelection){
         }
     
     }
+
     return x;
 }
 let playerSelection;
@@ -72,23 +82,27 @@ const btn3 = document.createElement("button");
 btn3.textContent = "scissors";
 body.appendChild(btn3);
 
+const bodiee=document.querySelector('body');
+const pp=document.createElement('p');
+bodiee.appendChild(pp)
+
 btn1.onclick=()=>{
     playerSelection="rock"
     computerSelection=getComputerChoice()
 x=plays(playerSelection,computerSelection)
-para.textContent =x;
+para.textContent =y;
 };
 
 btn2.onclick=()=>{playerSelection="paper"
 computerSelection=getComputerChoice()
 x=plays(playerSelection,computerSelection)
-para.textContent =x;
+para.textContent =y;
 };
 
 btn3.onclick=()=>{playerSelection="scissors"
 computerSelection=getComputerChoice()
 x=plays(playerSelection,computerSelection)
-para.textContent =x;
+para.textContent =y;
 };
 
 
